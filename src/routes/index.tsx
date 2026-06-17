@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { PageLayout } from "@/components/page-layout";
 import { HeroVideo } from "@/components/hero-video";
 import { MissionBand } from "@/components/mission-band";
 import { ImpactStats } from "@/components/impact-stats";
@@ -21,16 +20,12 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <div className="flex min-h-dvh flex-col">
-      <SiteHeader />
-      <main id="main" className="flex-1">
-        <HeroVideo />
-        <MissionBand />
-        <ImpactStats />
-        <ProgramsPreview />
-        <Newsletter />
-      </main>
-      <SiteFooter />
-    </div>
+    <PageLayout>
+      <HeroVideo />
+      <MissionBand />
+      <ImpactStats />
+      <ProgramsPreview />
+      <Newsletter />
+    </PageLayout>
   );
 }
