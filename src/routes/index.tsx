@@ -1,29 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { HeroVideo } from "@/components/hero-video";
+import { MissionBand } from "@/components/mission-band";
+import { ImpactStats } from "@/components/impact-stats";
+import { ProgramsPreview } from "@/components/programs-preview";
+import { Newsletter } from "@/components/newsletter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Hauser Foundation — Building Hope, Funding Change" },
+      { name: "description", content: "Partnering with local leaders to deliver education, health, and economic opportunity with full transparency on every dollar." },
+      { property: "og:title", content: "Hauser Foundation — Building Hope, Funding Change" },
+      { property: "og:description", content: "Education, health, and community programs around the world. Transparent and accountable." },
     ],
   }),
-  component: Index,
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function HomePage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="flex min-h-dvh flex-col">
+      <SiteHeader />
+      <main id="main" className="flex-1">
+        <HeroVideo />
+        <MissionBand />
+        <ImpactStats />
+        <ProgramsPreview />
+        <Newsletter />
+      </main>
+      <SiteFooter />
     </div>
   );
 }
