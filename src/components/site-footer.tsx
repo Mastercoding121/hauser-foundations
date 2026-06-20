@@ -36,6 +36,7 @@ export function SiteFooter() {
           <ul className="mt-3 space-y-2 text-sm">
             <li><Link to="/programs" className="text-muted-foreground hover:text-foreground transition-colors">Programs</Link></li>
             <li><Link to="/stories" className="text-muted-foreground hover:text-foreground transition-colors">Impact Stories</Link></li>
+            <li><Link to="/grants" className="text-muted-foreground hover:text-foreground transition-colors">Grants Database</Link></li>
             <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link></li>
             <li><Link to="/transparency" className="text-muted-foreground hover:text-foreground transition-colors">Transparency</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
@@ -45,6 +46,7 @@ export function SiteFooter() {
           <h2 className="text-sm font-semibold text-foreground">Get involved</h2>
           <ul className="mt-3 space-y-2 text-sm">
             <li><Link to="/donate" className="text-muted-foreground hover:text-foreground transition-colors">Donate</Link></li>
+            <li><Link to="/grants" className="text-muted-foreground hover:text-foreground transition-colors">Grants database</Link></li>
             <li><Link to="/transparency" className="text-muted-foreground hover:text-foreground transition-colors">Financial reports</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Partner with us</Link></li>
           </ul>

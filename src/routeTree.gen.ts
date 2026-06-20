@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as GrantsRouteImport } from './routes/grants'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -30,6 +31,11 @@ const StoriesRoute = StoriesRouteImport.update({
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrantsRoute = GrantsRouteImport.update({
+  id: '/grants',
+  path: '/grants',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DonateRoute = DonateRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/grants': typeof GrantsRoute
   '/programs': typeof ProgramsRoute
   '/stories': typeof StoriesRoute
   '/transparency': typeof TransparencyRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/grants': typeof GrantsRoute
   '/programs': typeof ProgramsRoute
   '/stories': typeof StoriesRoute
   '/transparency': typeof TransparencyRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/grants': typeof GrantsRoute
   '/programs': typeof ProgramsRoute
   '/stories': typeof StoriesRoute
   '/transparency': typeof TransparencyRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/donate'
+    | '/grants'
     | '/programs'
     | '/stories'
     | '/transparency'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/donate'
+    | '/grants'
     | '/programs'
     | '/stories'
     | '/transparency'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/donate'
+    | '/grants'
     | '/programs'
     | '/stories'
     | '/transparency'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
+  GrantsRoute: typeof GrantsRoute
   ProgramsRoute: typeof ProgramsRoute
   StoriesRoute: typeof StoriesRoute
   TransparencyRoute: typeof TransparencyRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grants': {
+      id: '/grants'
+      path: '/grants'
+      fullPath: '/grants'
+      preLoaderRoute: typeof GrantsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/donate': {
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
+  GrantsRoute: GrantsRoute,
   ProgramsRoute: ProgramsRoute,
   StoriesRoute: StoriesRoute,
   TransparencyRoute: TransparencyRoute,

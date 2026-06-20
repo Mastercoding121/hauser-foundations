@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Heart } from "lucide-react";
+import { Heart, Database } from "lucide-react";
 
 const navItems = [
   { to: "/", label: "Home", exact: true },
@@ -7,6 +7,7 @@ const navItems = [
   { to: "/stories", label: "Stories", exact: false },
   { to: "/about", label: "About", exact: false },
   { to: "/transparency", label: "Transparency", exact: false },
+  { to: "/grants", label: "Grants", exact: false },
   { to: "/contact", label: "Contact", exact: false },
 ] as const;
 
@@ -36,19 +37,26 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-0.5">
             {navItems.map((item) => (
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
+                  className="rounded-md px-2.5 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
                   activeProps={{
-                    className: "rounded-md px-3 py-2 text-sm font-semibold text-foreground bg-secondary",
+                    className: "rounded-md px-2.5 py-2 text-sm font-semibold text-foreground bg-secondary",
                   }}
                   activeOptions={{ exact: item.exact }}
                 >
-                  {item.label}
+                  {item.to === "/grants" ? (
+                    <span className="inline-flex items-center gap-1.5">
+                      <Database className="h-3 w-3 text-primary" aria-hidden="true" />
+                      Grants
+                    </span>
+                  ) : (
+                    item.label
+                  )}
                 </Link>
               </li>
             ))}
