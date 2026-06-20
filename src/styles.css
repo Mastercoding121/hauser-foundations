@@ -40,12 +40,12 @@
 
   --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--primary) 25%, transparent);
   --shadow-card: 0 2px 8px -2px oklch(0 0 0 / 0.06), 0 8px 24px -8px oklch(0 0 0 / 0.08);
+  --shadow-glow: 0 0 40px -10px color-mix(in oklab, var(--gold) 40%, transparent);
 }
 
 :root {
   --radius: 0.5rem;
 
-  /* Deep forest green primary — trustworthy, charitable, professional */
   --background: oklch(0.99 0.005 80);
   --foreground: oklch(0.18 0.02 160);
 
@@ -144,4 +144,124 @@
 }
 @media (min-width: 768px) {
   .container-page { padding-inline: 2rem; }
+}
+
+/* ── Keyframe animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(3deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px -4px var(--color-gold); }
+  50%       { box-shadow: 0 0 40px -4px var(--color-gold); }
+}
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: var(--target-width); }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orbitDot {
+  from { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+/* ── Animation utilities ── */
+.animate-fade-up    { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fade-in    { animation: fadeIn 0.6s ease forwards; }
+.animate-slide-right { animation: slideRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slide-left { animation: slideLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-scale-in   { animation: scaleIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-float      { animation: float 4s ease-in-out infinite; }
+.animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+.animate-shimmer    { animation: shimmer 2.8s linear infinite; }
+.animate-pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
+.animate-spin-slow  { animation: spinSlow 12s linear infinite; }
+
+/* Delay utilities */
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Initial hidden state for scroll-triggered animations */
+.motion-safe\:opacity-0 { opacity: 0; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, oklch(0.55 0.12 200) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-gold {
+  background: linear-gradient(135deg, oklch(0.7 0.14 75) 0%, oklch(0.78 0.12 55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Icon gradient backgrounds */
+.icon-blue    { background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); color: white; }
+.icon-rose    { background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%); color: white; }
+.icon-emerald { background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); color: white; }
+.icon-amber   { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; }
+.icon-violet  { background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: white; }
+.icon-sky     { background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%); color: white; }
+.icon-gold    { background: linear-gradient(135deg, oklch(0.72 0.13 70) 0%, oklch(0.65 0.12 55) 100%); color: oklch(0.2 0.04 70); }
+.icon-primary { background: linear-gradient(135deg, oklch(0.32 0.06 160) 0%, oklch(0.28 0.08 185) 100%); color: white; }
+
+/* Shimmer background for loading/decorative */
+.shimmer-bg {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+}
+
+/* Card hover glow */
+.card-hover-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-hover-glow:hover {
+  box-shadow: 0 8px 40px -8px color-mix(in oklab, var(--color-primary) 20%, transparent);
+  transform: translateY(-3px);
+}
+
+/* Decorative blob */
+.blob {
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
 }

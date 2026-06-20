@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransparencyRouteImport } from './routes/transparency'
+import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const TransparencyRoute = TransparencyRouteImport.update({
   id: '/transparency',
   path: '/transparency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesRoute = StoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgramsRoute = ProgramsRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
+  '/stories': typeof StoriesRoute
   '/transparency': typeof TransparencyRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
+  '/stories': typeof StoriesRoute
   '/transparency': typeof TransparencyRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
+  '/stories': typeof StoriesRoute
   '/transparency': typeof TransparencyRoute
 }
 export interface FileRouteTypes {
@@ -80,9 +89,17 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/programs'
+    | '/stories'
     | '/transparency'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/donate' | '/programs' | '/transparency'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/donate'
+    | '/programs'
+    | '/stories'
+    | '/transparency'
   id:
     | '__root__'
     | '/'
@@ -90,6 +107,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/donate'
     | '/programs'
+    | '/stories'
     | '/transparency'
   fileRoutesById: FileRoutesById
 }
@@ -99,6 +117,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
   ProgramsRoute: typeof ProgramsRoute
+  StoriesRoute: typeof StoriesRoute
   TransparencyRoute: typeof TransparencyRoute
 }
 
@@ -109,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/transparency'
       fullPath: '/transparency'
       preLoaderRoute: typeof TransparencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories': {
+      id: '/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof StoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programs': {
@@ -155,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
   ProgramsRoute: ProgramsRoute,
+  StoriesRoute: StoriesRoute,
   TransparencyRoute: TransparencyRoute,
 }
 export const routeTree = rootRouteImport
