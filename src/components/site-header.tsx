@@ -6,8 +6,8 @@ const navItems = [
   { to: "/programs", label: "Programs", exact: false },
   { to: "/stories", label: "Stories", exact: false },
   { to: "/about", label: "About", exact: false },
-  { to: "/transparency", label: "Transparency", exact: false },
-  { to: "/grants", label: "Grants", exact: false },
+  { to: "/transparency", label: "Reports", exact: false },
+  { to: "/grants", label: "Grants", exact: false, icon: true },
   { to: "/contact", label: "Contact", exact: false },
 ] as const;
 
@@ -20,43 +20,39 @@ export function SiteHeader() {
       >
         Skip to content
       </a>
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
+      <div className="container-page flex h-16 items-center justify-between gap-2 md:h-[4.25rem]">
         <Link
           to="/"
-          className="flex min-w-0 items-center gap-2.5 group"
+          className="flex min-w-0 shrink-0 items-center gap-2 group"
           aria-label="Hauser Foundation, home"
         >
           <span
             aria-hidden="true"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm transition-transform group-hover:scale-110"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm transition-transform group-hover:scale-110"
           >
-            <Heart className="h-4 w-4" fill="currentColor" />
+            <Heart className="h-3.5 w-3.5" fill="currentColor" />
           </span>
-          <span className="font-serif text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+          <span className="font-serif text-base font-semibold tracking-tight text-foreground sm:text-[17px]">
             Hauser Foundation
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden xl:block">
-          <ul className="flex items-center gap-0.5">
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center">
             {navItems.map((item) => (
               <li key={item.to}>
                 <Link
                   to={item.to}
-                  className="rounded-md px-2.5 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
+                  className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-[13px] font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
                   activeProps={{
-                    className: "rounded-md px-2.5 py-2 text-sm font-semibold text-foreground bg-secondary",
+                    className: "inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-[13px] font-semibold text-foreground bg-secondary",
                   }}
                   activeOptions={{ exact: item.exact }}
                 >
-                  {item.to === "/grants" ? (
-                    <span className="inline-flex items-center gap-1.5">
-                      <Database className="h-3 w-3 text-primary" aria-hidden="true" />
-                      Grants
-                    </span>
-                  ) : (
-                    item.label
+                  {"icon" in item && item.icon && (
+                    <Database className="h-3 w-3 text-primary" aria-hidden="true" />
                   )}
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -65,7 +61,7 @@ export function SiteHeader() {
 
         <Link
           to="/donate"
-          className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-gradient-to-br from-primary to-primary/85 px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:scale-[1.04] hover:shadow-md"
+          className="inline-flex min-h-10 shrink-0 items-center justify-center gap-1.5 rounded-full bg-gradient-to-br from-primary to-primary/85 px-4 py-2 text-[13px] font-semibold text-primary-foreground shadow-sm transition-all hover:scale-[1.04] hover:shadow-md"
         >
           <Heart className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true" />
           Donate
